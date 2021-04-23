@@ -7,15 +7,17 @@ import Home from './Home';
 import Order from './Order';
 import Profile from './Profile';
 import DetailFood from './DetailFood';
+import PaymentProduct from './PaymentProduct';
 
 export {
-    SplashScreen,
-    Login,
-    SignUp,
-    SignUpAddress,
-    Home,
-    Order,
-    Profile,
-    SuccessSignUp,
-    DetailFood,
+  SplashScreen,
+  Login,
+  SignUp,
+  SignUpAddress,
+  Home,
+  Order,
+  Profile,
+  SuccessSignUp,
+  DetailFood,
+  PaymentProduct,
 };

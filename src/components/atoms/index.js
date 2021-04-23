@@ -6,14 +6,16 @@ import CardMenu from './CardMenu';
 import ListMenuItem from './ListMenuItem';
 import Rating from './Rating';
 import Counter from './Counter';
+import ItemValue from './ItemValue';
 
 export {
-    FormInput,
-    Gap,
-    Button,
-    Select,
-    CardMenu,
-    ListMenuItem,
-    Rating,
-    Counter,
+  FormInput,
+  Gap,
+  Button,
+  Select,
+  CardMenu,
+  ListMenuItem,
+  Rating,
+  Counter,
+  ItemValue,
 };
