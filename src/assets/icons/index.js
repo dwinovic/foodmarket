@@ -10,18 +10,20 @@ import ICStarRating from './star.svg';
 import ICBtnPlus from './ic_BtnPlus.svg';
 import ICBtnMin from './ic_BtnMin.svg';
 import ICBackLight from './ic_backLight.svg';
+import ICNext from './ic-next.svg';
 
 export {
-    ICLogo,
-    ICBack,
-    ICHomeActive,
-    ICHomeOff,
-    ICOrderActive,
-    ICOrderOff,
-    ICProfileActive,
-    ICProfileOff,
-    ICStarRating,
-    ICBtnMin,
-    ICBtnPlus,
-    ICBackLight,
+  ICLogo,
+  ICBack,
+  ICHomeActive,
+  ICHomeOff,
+  ICOrderActive,
+  ICOrderOff,
+  ICProfileActive,
+  ICProfileOff,
+  ICStarRating,
+  ICBtnMin,
+  ICBtnPlus,
+  ICBackLight,
+  ICNext,
 };

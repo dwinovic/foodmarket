@@ -11,25 +11,90 @@ const RatingComponent = () => {
   );
 };
 
-const ItemComponent = ({totalItem}) => {
+const ItemComponent = ({totalItem, date, status}) => {
+  const DateAndStatus = () => {
+    return (
+      <>
+        <Text style={styles.date}>{date}</Text>
+        <Text style={styles.status}>{status}</Text>
+      </>
+    );
+  };
   return (
     <View style={styles.itemWrapper}>
-      <Text style={styles.totalItem}>{totalItem}</Text>
+      {totalItem && <Text style={styles.totalItem}>{totalItem}</Text>}
+      {date && status && <DateAndStatus />}
     </View>
   );
 };
 
-const ListMenuItem = ({titleMenu, image, price, onPress, rating, item}) => {
+const ListMenuItem = ({
+  titleMenu,
+  image,
+  price,
+  onPress,
+  rating,
+  totalItem,
+  type,
+  date,
+  status,
+}) => {
+  const ItemChecking = () => {
+    switch (type) {
+      case 'item-product':
+        return (
+          <>
+            <Image source={image} style={styles.image} />
+            <View style={styles.desc}>
+              <Text style={styles.title}>{titleMenu}</Text>
+              <Text style={styles.price}>{price}</Text>
+            </View>
+            <RatingComponent />
+          </>
+        );
+      case 'item-checkout':
+        return (
+          <>
+            <Image source={image} style={styles.image} />
+            <View style={styles.desc}>
+              <Text style={styles.title}>{titleMenu}</Text>
+              <Text style={styles.price}>{price}</Text>
+            </View>
+            <ItemComponent totalItem={totalItem} />
+          </>
+        );
+      case 'item-order':
+        return (
+          <>
+            <Image source={image} style={styles.image} />
+            <View style={styles.desc}>
+              <Text style={styles.title}>{titleMenu}</Text>
+              <Text style={styles.price}>
+                {totalItem} | {price}
+              </Text>
+            </View>
+            <ItemComponent date={date} status={status} />
+          </>
+        );
+      default:
+        return (
+          <>
+            <Image source={image} style={styles.image} />
+            <View style={styles.desc}>
+              <Text style={styles.title}>{titleMenu}</Text>
+              <Text style={styles.price}>{price}</Text>
+            </View>
+            {rating && !totalItem && <RatingComponent />}
+            {totalItem && !rating && <ItemComponent totalItem={totalItem} />}
+          </>
+        );
+    }
+  };
+
   return (
     <TouchableOpacity activeOpacity={0.6} onPress={onPress}>
       <View style={styles.container}>
-        <Image source={image} style={styles.image} />
-        <View style={styles.desc}>
-          <Text style={styles.title}>{titleMenu}</Text>
-          <Text style={styles.price}>{price}</Text>
-        </View>
-        {rating && !item && <RatingComponent />}
-        {item && !rating && <ItemComponent totalItem={item} />}
+        <ItemChecking />
       </View>
     </TouchableOpacity>
   );
@@ -66,5 +131,21 @@ const styles = StyleSheet.create({
   },
   rating: {
     justifyContent: 'center',
+  },
+  totalItem: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 16,
+    color: colors.text.gray,
+  },
+  date: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
+    color: colors.text.gray,
+  },
+  status: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.text.red,
   },
 });

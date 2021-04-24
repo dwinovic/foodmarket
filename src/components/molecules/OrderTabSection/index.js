@@ -5,7 +5,7 @@ import {DMMenu1, DMMenu2, DMMenu3, MenuPecel} from '../../../assets';
 import {ListMenuItem} from '../../atoms';
 import {useNavigation} from '@react-navigation/native';
 
-const NewTaste = () => {
+const InProgress = () => {
   const navigation = useNavigation();
   return (
     <View style={{marginHorizontal: 14, marginVertical: 16}}>
@@ -14,14 +14,30 @@ const NewTaste = () => {
         price="IDR 420.000"
         titleMenu="Ayam"
         onPress={() => navigation.navigate('DetailFood')}
+        type="item-product"
+        rating={5}
       />
-      <ListMenuItem image={DMMenu3} price="IDR 420.000" titleMenu="Ayam" />
-      <ListMenuItem image={MenuPecel} price="IDR 420.000" titleMenu="Ayam" />
+      <ListMenuItem
+        image={DMMenu3}
+        price="IDR 420.000"
+        titleMenu="Ayam"
+        type="item-checkout"
+        totalItem="01 Items"
+      />
+      <ListMenuItem
+        image={DMMenu3}
+        price="IDR 420.000"
+        titleMenu="Ayam"
+        type="item-order"
+        totalItem="4 Items"
+        date="05 April 2021"
+        status="Cancel"
+      />
     </View>
   );
 };
 
-const Popular = () => {
+const PostOrders = () => {
   const navigation = useNavigation();
 
   return (
@@ -32,20 +48,9 @@ const Popular = () => {
   );
 };
 
-const Recommended = () => {
-  const navigation = useNavigation();
-
-  return (
-    <View style={{marginHorizontal: 14, marginVertical: 16}}>
-      <ListMenuItem image={DMMenu3} price="IDR 420.000" titleMenu="Ayam" />
-    </View>
-  );
-};
-
 const renderScene = SceneMap({
-  1: NewTaste,
-  2: Popular,
-  3: Recommended,
+  1: InProgress,
+  2: PostOrders,
 });
 
 const renderTabBar = props => (
@@ -60,14 +65,13 @@ const renderTabBar = props => (
   />
 );
 
-const HomeTabSection = () => {
+const OrderTabSection = () => {
   const layout = useWindowDimensions();
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    {key: '1', title: 'New Taste'},
-    {key: '2', title: 'Popular'},
-    {key: '3', title: 'Recommended'},
+    {key: '1', title: 'In Progress'},
+    {key: '2', title: 'Post Orders'},
   ]);
 
   return (
@@ -82,7 +86,7 @@ const HomeTabSection = () => {
   );
 };
 
-export default HomeTabSection;
+export default OrderTabSection;
 
 const styles = StyleSheet.create({
   tabStyle: {width: 'auto'},

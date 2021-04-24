@@ -10,8 +10,8 @@ const Button = ({title, onPress, type}) => {
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={onPress}
-            style={styles.btnDanger}>
-            <Text style={styles.titleDanger}>{title}</Text>
+            style={styles.btnSecondary}>
+            <Text style={styles.title}>{title}</Text>
           </TouchableOpacity>
         );
       }
@@ -20,8 +20,8 @@ const Button = ({title, onPress, type}) => {
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={onPress}
-            style={styles.btnSecondary}>
-            <Text style={styles.title}>{title}</Text>
+            style={styles.btnDanger}>
+            <Text style={styles.titleDanger}>{title}</Text>
           </TouchableOpacity>
         );
       }

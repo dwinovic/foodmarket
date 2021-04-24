@@ -12,8 +12,10 @@ import {
   Profile,
   DetailFood,
   PaymentProduct,
+  OrderInProgress,
 } from '../pages';
 import {BottomNavigator} from '../components/molecules';
+import SuccessOrder from '../pages/SuccessOrder';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,7 +32,7 @@ const MainApp = () => {
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="DetailFood">
+    <Stack.Navigator initialRouteName="MainApp">
       <Stack.Screen
         name="Splash"
         component={SplashScreen}
@@ -69,6 +71,16 @@ const Router = () => {
       <Stack.Screen
         name="PaymentProduct"
         component={PaymentProduct}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SuccessOrder"
+        component={SuccessOrder}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OrderInProgress"
+        component={OrderInProgress}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

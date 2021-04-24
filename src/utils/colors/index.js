@@ -11,6 +11,7 @@ export const colors = {
     white: white,
     gray: gray1,
     green: green1,
+    red: red1,
   },
   border: {
     primary: black,
