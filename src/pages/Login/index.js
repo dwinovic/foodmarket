@@ -5,13 +5,13 @@ import {LayoutContent, LayoutPage} from '../../components/layout';
 import {Header} from '../../components/molecules';
 import {useForm} from '../../utils';
 import Axios from 'axios';
+import {useSelector} from 'react-redux';
 
 const Login = ({navigation}) => {
   const [form, setForm] = useForm({
     email: '',
     password: '',
   });
-
   const onSubmit = () => {
     console.info(form);
     Axios.post('http://foodmarket-backend.buildwithangga.id/api/login', form)
@@ -43,7 +43,11 @@ const Login = ({navigation}) => {
         <Gap height={24} />
         <Button title="Sign In" onPress={onSubmit} />
         <Gap height={12} />
-        <Button title="Create New Account" type="secondary" />
+        <Button
+          title="Create New Account"
+          type="secondary"
+          onPress={() => navigation.navigate('SignUp')}
+        />
         {/* Button: Register */}
         <Gap height={24} />
       </LayoutContent>
