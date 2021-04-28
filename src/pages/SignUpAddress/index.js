@@ -1,10 +1,11 @@
+import Axios from 'axios';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {Button, FormInput, Gap, Select} from '../../components/atoms';
 import {LayoutContent, LayoutPage} from '../../components/layout';
 import {Header} from '../../components/molecules';
-import {useForm} from '../../utils';
-import {useDispatch, useSelector} from 'react-redux';
+import {showMessage, useForm} from '../../utils';
 
 const SignUpAddress = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -14,17 +15,26 @@ const SignUpAddress = ({navigation}) => {
     city: '',
   });
 
-  const dispatch = useDispatch();
   const registerReducer = useSelector(state => state.registerReducer);
+  const dispatch = useDispatch();
 
   const onSubmit = () => {
     // console.log(form);
+    dispatch({type: 'SET_LOADING', value: true});
     const data = {
       ...form,
       ...registerReducer,
     };
-    console.log('Data Register', data);
-    // navigation.replace('SuccessSignUp')
+    Axios.post('http://foodmarket-backend.buildwithangga.id/api/register', data)
+      .then(res => {
+        showMessage(res?.response?.data?.message, 'success');
+        navigation.replace('SuccessSignUp');
+        dispatch({type: 'SET_LOADING', value: false});
+      })
+      .catch(err => {
+        dispatch({type: 'SET_LOADING', value: false});
+        showMessage(err?.response?.data?.message);
+      });
   };
 
   return (

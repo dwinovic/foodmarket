@@ -10,13 +10,13 @@ import {
 import {CircleFrame, UserNullPhoto} from '../../../assets';
 import {colors} from '../../../utils';
 
-const AvatarWrapper = ({profile}) => {
+const AvatarWrapper = ({profile, onPress}) => {
   return (
-    <TouchableOpacity style={styles.avatarWrapper}>
+    <TouchableOpacity style={styles.avatarWrapper} onPress={onPress}>
       <CircleFrame />
       <View style={styles.avatar}>
         {profile ? (
-          <Image source={profile} style={styles.avatar} />
+          <Image source={{uri: profile}} style={styles.avatar} />
         ) : (
           <ImageBackground source={UserNullPhoto} style={styles.avatar}>
             <Text style={styles.textAvatar}>Add Photo</Text>

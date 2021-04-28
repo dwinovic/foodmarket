@@ -7,6 +7,7 @@ import ListMenuItem from './ListMenuItem';
 import Rating from './Rating';
 import Counter from './Counter';
 import ItemValue from './ItemValue';
+import Loading from './Loading';
 
 export {
   FormInput,
@@ -18,4 +19,5 @@ export {
   Rating,
   Counter,
   ItemValue,
+  Loading,
 };

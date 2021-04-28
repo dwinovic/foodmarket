@@ -16,10 +16,10 @@ const Login = ({navigation}) => {
     console.info(form);
     Axios.post('http://foodmarket-backend.buildwithangga.id/api/login', form)
       .then(res => {
-        console.log(res);
+        // console.log(res);
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
       });
 
     // navigation.navigate('SignUp');

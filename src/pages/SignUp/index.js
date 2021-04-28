@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {useDispatch} from 'react-redux';
 import {Button, FormInput, Gap} from '../../components/atoms';
 import {LayoutContent, LayoutPage} from '../../components/layout';
 import {AvatarWrapper, Header} from '../../components/molecules';
-import {useForm} from '../../utils';
-import {useDispatch} from 'react-redux';
+import {showMessage, useForm} from '../../utils';
 
 const SignUp = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -13,10 +14,31 @@ const SignUp = ({navigation}) => {
     password: '',
   });
 
+  const [photo, setPhoto] = useState('');
+
   const dispatch = useDispatch();
 
+  const addPhoto = () => {
+    launchImageLibrary(
+      {maxWidth: 250, maxHeight: 250, quality: 0.5},
+      response => {
+        if (response.didCancel || response.error) {
+          showMessage('Anda tidak memilih photo');
+        } else {
+          const dataImage = {
+            fileName: response.fileName,
+            type: response.type,
+            uri: response.uri,
+          };
+          setPhoto(dataImage.uri);
+          console.log(photo);
+        }
+      },
+    );
+  };
+
   const onSubmit = () => {
-    console.log(form);
+    // console.log(form);
     dispatch({type: 'SET_REGISTER', value: form});
     navigation.navigate('SignUpAddress');
   };
@@ -30,7 +52,7 @@ const SignUp = ({navigation}) => {
         onPress={() => navigation.goBack()}
       />
       <LayoutContent>
-        <AvatarWrapper />
+        <AvatarWrapper onPress={addPhoto} profile={photo} />
         <Gap height={16} />
         <FormInput
           label="Full Name"
